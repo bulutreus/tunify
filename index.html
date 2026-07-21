@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#121212">
   <title>Tunify Premium</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:title" content="Tunify Premium">
+  <meta property="og:image" content="logo.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Tunify">
   <style>
     :root{
       --bg:#121212;
@@ -55,7 +61,9 @@
     .top-bar .ctx .kicker{
       font-size:11px; letter-spacing:1.4px; text-transform:uppercase;
       color:#fff; opacity:0.85; font-weight:700;
+      display:flex; align-items:center; justify-content:center; gap:6px;
     }
+    .top-bar .ctx .kicker img{ width:16px; height:16px; border-radius:50%; display:block; }
     .top-bar .ctx .plname{ font-size:13px; font-weight:700; color:#fff; }
     .icon-btn{
       background:none; border:none; color:#fff; cursor:pointer;
@@ -179,7 +187,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="ctx">
-        <div class="kicker">Çalma Listesi</div>
+        <div class="kicker"><img src="logo.png" alt="Tunify">Tunify Premium</div>
         <div class="plname">Tuana ♡ Bulut</div>
       </div>
       <button class="icon-btn" title="Menü">
