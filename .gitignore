@@ -1,0 +1,5 @@
+# Yayına dahil edilmeyecek dosyalar
+tunifyy-hostinger.zip
+*.zip
+.DS_Store
+Thumbs.db
