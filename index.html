@@ -16,353 +16,310 @@
       --bg:#121212;
       --accent:#1ed760;
       --text:#ffffff;
-      --muted:#b3b3b3;
-      --grad:#535353;      /* kapaktan hesaplanacak baskin renk */
+      --muted:#c9c9c9;
+      --grad:#7a1f22;       /* kapaktan hesaplanan baskin renk */
+      --grad-dark:#2a0d0e;  /* baskin rengin koyulastirilmis hali */
     }
     *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
     html,body{ margin:0; padding:0; height:100%; }
     body{
       font-family:'Circular','Inter','Helvetica Neue',Arial,sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      min-height:100vh;
-      min-height:100dvh;
-      overflow-x:hidden;
+      color:var(--text); background:var(--bg);
+      min-height:100vh; min-height:100dvh; overflow:hidden;
     }
-    /* Kapaktan turetilen dikey renk gecisi (Spotify imzasi) */
+
+    /* Arka plan: gradient veya tam ekran video */
     #bg{
       position:fixed; inset:0; z-index:0;
-      background:linear-gradient(180deg, var(--grad) 0%, #1a1a1a 55%, var(--bg) 100%);
+      background:linear-gradient(180deg, var(--grad) 0%, var(--grad) 20%, var(--grad-dark) 100%);
       transition:background 0.6s ease;
     }
-    #bg video{
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; opacity:0.35; filter:blur(28px);
-    }
+    #bg video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none; }
+    body.video #bg video{ display:block; }
     #bg::after{
       content:""; position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.35) 100%);
+    }
+    body.video #bg::after{
+      background:linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.82) 100%);
     }
 
     .screen{
-      position:relative; z-index:1;
-      max-width:460px; margin:0 auto;
-      min-height:100vh; min-height:100dvh;
-      display:flex; flex-direction:column;
-      padding:14px 22px calc(18px + env(safe-area-inset-bottom));
+      position:relative; z-index:1; max-width:460px; margin:0 auto;
+      height:100vh; height:100dvh; display:flex; flex-direction:column;
+      padding:10px 22px calc(10px + env(safe-area-inset-bottom));
+      overflow:hidden;
     }
 
     /* Ust bar */
     .top-bar{
       display:flex; align-items:center; justify-content:space-between;
-      padding-top:8px; height:44px; flex:0 0 auto;
+      padding-top:6px; height:42px; flex:0 0 auto;
     }
-    .top-bar .ctx{ text-align:center; line-height:1.25; }
-    .top-bar .ctx .kicker{
-      font-size:11px; letter-spacing:1.4px; text-transform:uppercase;
-      color:#fff; opacity:0.85; font-weight:700;
+    .top-bar .ctx{
+      flex:1; text-align:center; font-size:14px; font-weight:700; color:#fff;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 8px;
     }
-    .top-bar .ctx .plname{ font-size:13px; font-weight:700; color:#fff; }
     .icon-btn{
-      background:none; border:none; color:#fff; cursor:pointer;
-      width:34px; height:34px; display:flex; align-items:center; justify-content:center;
-      padding:0;
+      background:none; border:none; color:#fff; cursor:pointer; padding:0;
+      width:34px; height:34px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
     }
     .icon-btn svg{ width:24px; height:24px; display:block; }
 
-    /* Kapak */
-    .cover-wrap{
-      flex:1 1 auto; display:flex; align-items:center; justify-content:center;
-      padding:18px 0;
-    }
+    /* Buyuk kapak */
+    .cover-wrap{ flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:14px 0; min-height:0; }
     .cover-art{
-      width:min(90vw, 410px); aspect-ratio:1/1;
-      border-radius:10px; overflow:hidden;
-      box-shadow:0 18px 46px rgba(0,0,0,0.55);
-      background:#222;
+      width:min(90vw, 62vh, 420px); aspect-ratio:1/1;
+      border-radius:8px; overflow:hidden; background:#222;
+      box-shadow:0 16px 44px rgba(0,0,0,0.55);
     }
-    .cover-art img,.cover-art video{
-      width:100%; height:100%; object-fit:cover; display:block;
-    }
+    .cover-art img{ width:100%; height:100%; object-fit:cover; display:block; }
+    body.video .cover-wrap{ display:none; }
 
-    /* Sarki bilgisi + kalp */
-    .meta{
-      display:flex; align-items:center; gap:12px; margin-top:6px; flex:0 0 auto;
+    /* Soz teaser (kapak ile baslik arasi kalin satir) */
+    .lyric-teaser{
+      font-size:23px; font-weight:800; letter-spacing:-0.3px; line-height:1.2;
+      color:#fff; margin:6px 0 14px; flex:0 0 auto;
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
     }
+    body.video .lyric-teaser{ margin-top:auto; }
+
+    /* Baslik satiri + aksiyonlar */
+    .meta{ display:flex; align-items:center; gap:12px; flex:0 0 auto; }
+    .meta .thumb{ width:48px; height:48px; border-radius:5px; overflow:hidden; background:#333; flex:0 0 auto; display:none; }
+    .meta .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    body.video .meta .thumb{ display:block; }
     .meta .txt{ flex:1; min-width:0; }
-    .meta .title{
-      font-size:22px; font-weight:800; letter-spacing:-0.3px;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-    .meta .artist{
-      font-size:15px; color:var(--muted); margin-top:3px;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-    .heart{ background:none; border:none; cursor:pointer; color:var(--muted); padding:6px; }
-    .heart svg{ width:26px; height:26px; display:block; }
-    .heart.active{ color:var(--accent); }
+    .meta .title{ font-size:23px; font-weight:800; letter-spacing:-0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .meta .artist{ font-size:15px; color:var(--muted); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .act{ background:none; border:none; color:#fff; cursor:pointer; padding:4px; flex:0 0 auto; }
+    .act svg{ width:26px; height:26px; display:block; }
+    .act.add.on{ color:var(--accent); }
 
-    /* Ilerleme cubugu */
-    .progress{ margin-top:20px; flex:0 0 auto; }
-    .bar{
-      position:relative; height:4px; border-radius:2px;
-      background:rgba(255,255,255,0.28); cursor:pointer;
-    }
-    .bar .fill{
-      position:absolute; left:0; top:0; bottom:0; width:0%;
-      background:#fff; border-radius:2px;
-    }
-    .bar .knob{
-      position:absolute; top:50%; left:0%; width:12px; height:12px;
-      background:#fff; border-radius:50%; transform:translate(-50%,-50%) scale(0);
-      transition:transform 0.12s ease;
-    }
+    /* Ilerleme */
+    .progress{ margin-top:18px; flex:0 0 auto; }
+    .bar{ position:relative; height:4px; border-radius:2px; background:rgba(255,255,255,0.30); cursor:pointer; }
+    .bar .fill{ position:absolute; left:0; top:0; bottom:0; width:0%; background:#fff; border-radius:2px; }
+    .bar .knob{ position:absolute; top:50%; left:0%; width:12px; height:12px; background:#fff; border-radius:50%; transform:translate(-50%,-50%) scale(0); transition:transform .12s; }
     .bar:hover .knob{ transform:translate(-50%,-50%) scale(1); }
-    .times{
-      display:flex; justify-content:space-between;
-      font-size:11px; color:var(--muted); margin-top:8px; font-variant-numeric:tabular-nums;
-    }
+    .times{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:7px; font-variant-numeric:tabular-nums; }
 
     /* Kontroller */
-    .controls{
-      display:flex; align-items:center; justify-content:space-between;
-      margin-top:14px; flex:0 0 auto;
-    }
-    .controls .ctl{
-      background:none; border:none; color:#fff; cursor:pointer; padding:6px;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .controls .ctl svg{ width:34px; height:34px; display:block; }
-    .controls .ctl.small svg{ width:26px; height:26px; }
-    .controls .ctl.toggle{ color:var(--muted); position:relative; }
-    .controls .ctl.toggle.on{ color:var(--accent); }
-    .controls .ctl.toggle.on::after{
-      content:""; position:absolute; bottom:-2px; left:50%; transform:translateX(-50%);
-      width:4px; height:4px; border-radius:50%; background:var(--accent);
-    }
-    .play-btn{
-      background:#fff; border:none; cursor:pointer;
-      width:64px; height:64px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      box-shadow:0 6px 18px rgba(0,0,0,0.45);
-      transition:transform 0.08s ease;
-    }
-    .play-btn:active{ transform:scale(0.94); }
-    .play-btn svg{ width:28px; height:28px; color:#000; display:block; }
+    .controls{ display:flex; align-items:center; justify-content:space-between; margin-top:12px; flex:0 0 auto; }
+    .ctl{ background:none; border:none; color:#fff; cursor:pointer; padding:6px; display:flex; align-items:center; justify-content:center; }
+    .ctl svg{ width:30px; height:30px; display:block; }
+    .ctl.small svg{ width:25px; height:25px; }
+    .ctl.dim{ color:rgba(255,255,255,0.55); }
+    .ctl.toggle{ color:#fff; position:relative; }
+    .ctl.toggle.on{ color:var(--accent); }
+    .ctl.toggle.on::after{ content:""; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:var(--accent); }
+    .play-btn{ background:#fff; border:none; cursor:pointer; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.4); transition:transform .08s; }
+    .play-btn:active{ transform:scale(.94); }
+    .play-btn svg{ width:26px; height:26px; color:#000; display:block; }
 
     /* Alt bar */
-    .bottom{
-      display:flex; align-items:center; justify-content:space-between;
-      margin-top:20px; flex:0 0 auto;
-    }
+    .bottom{ display:flex; align-items:center; justify-content:space-between; margin-top:16px; flex:0 0 auto; }
+    .bottom .grp{ display:flex; align-items:center; gap:22px; }
     .bottom .icon-btn svg{ width:20px; height:20px; }
 
-    /* Sozler karti */
-    .lyrics-card{
-      margin-top:16px; border-radius:10px; padding:16px 18px;
-      background:var(--grad); position:relative; overflow:hidden; flex:0 0 auto;
-      box-shadow:inset 0 0 0 100vh rgba(0,0,0,0.12);
+    /* Alt soz onizleme paneli */
+    .lyrics-peek{
+      margin:14px -22px calc(-10px - env(safe-area-inset-bottom));
+      background:var(--grad); border-radius:14px 14px 0 0;
+      padding:16px 22px 26px; flex:0 0 auto;
+      box-shadow:inset 0 0 0 100vh rgba(0,0,0,0.14);
+      transition:background 0.6s ease;
     }
-    .lyrics-card .lh{ font-size:15px; font-weight:800; margin-bottom:8px; }
-    .lyrics-card .ly{ font-size:19px; font-weight:700; line-height:1.35; opacity:0.95; }
-    .lyrics-card .ly span{ display:block; opacity:0.55; font-size:17px; }
-    .lyrics-card .ly span.cur{ opacity:1; }
-
-    @media (max-height:720px){
-      .cover-art{ width:min(74vw, 340px); }
-      .lyrics-card{ display:none; }
-      .meta .title{ font-size:20px; }
-    }
+    .lyrics-peek .lh{ font-size:16px; font-weight:800; }
+    .lyrics-peek .lp{ font-size:15px; font-weight:600; opacity:0.75; margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   </style>
 </head>
 <body>
   <div id="bg"><video id="bg-video" muted loop playsinline></video></div>
 
   <div class="screen">
-    <!-- Ust bar -->
     <div class="top-bar">
       <button class="icon-btn" title="Kapat" onclick="history.length>1&&history.back()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="ctx">
-        <div class="kicker">Çalma Listesi</div>
-        <div class="plname">Tuana ♡ Bulut</div>
-      </div>
+      <div class="ctx" id="ctx">Tuana ♡ Bulut</div>
       <button class="icon-btn" title="Menü">
-        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
       </button>
     </div>
 
-    <!-- Kapak -->
     <div class="cover-wrap">
-      <div class="cover-art">
-        <img id="main-cover" src="1.jpg" alt="Kapak">
-        <video id="main-video" muted loop playsinline style="display:none"></video>
-      </div>
+      <div class="cover-art"><img id="main-cover" src="1.jpg" alt="Kapak"></div>
     </div>
 
-    <!-- Sarki bilgisi + kalp -->
+    <div class="lyric-teaser" id="lyric-teaser"></div>
+
     <div class="meta">
+      <div class="thumb"><img id="thumb-img" src="1.jpg" alt=""></div>
       <div class="txt">
         <div class="title" id="song-title">Herkesim</div>
         <div class="artist" id="song-artist">Tuana ♡ Bulut</div>
       </div>
-      <button class="heart" id="heart" title="Beğen" aria-pressed="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.6-8.9C1 8.9 2.6 6 5.6 6c1.9 0 3.2 1.1 4.4 2.6C11.2 7.1 12.5 6 14.4 6c3 0 4.6 2.9 3.2 6.1C19.5 16.4 12 21 12 21z"/></svg>
+      <button class="act" id="act-x" title="Bu şarkıyı geç">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <button class="act add" id="act-add" title="Kaydet" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
       </button>
     </div>
 
-    <!-- Ilerleme -->
     <div class="progress">
       <div class="bar" id="bar">
         <div class="fill" id="fill"></div>
         <div class="knob" id="knob"></div>
       </div>
-      <div class="times">
-        <span id="cur">0:00</span>
-        <span id="dur">0:00</span>
-      </div>
+      <div class="times"><span id="cur">0:00</span><span id="rem">-0:00</span></div>
     </div>
 
-    <!-- Kontroller -->
     <div class="controls">
-      <button class="ctl toggle small" id="shuffle" title="Karıştır">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l4 3-4 3V8h-2.2c-1 0-1.6.4-2.4 1.5l-1 1.4-1.2-1.7 .7-1C13 6.4 14.2 6 15.8 6H18V4zM2 6h3.2c1.6 0 2.8.4 3.9 2l6 8.5c.6.9 1.1 1.5 2.7 1.5H18v-2l4 3-4 3v-2h-2.2c-1.6 0-2.8-.4-3.9-2L5.9 9.5C5.3 8.6 4.8 8 3.2 8H2V6zm12.8 9.1l1.2-1.7 1 1.4c.8 1.1 1.4 1.5 2.4 1.5H22l-4 3v-2h-2.2c-1.6 0-2.8-.4-3.9-2l.9-.2z"/></svg>
+      <button class="ctl toggle small on" id="shuffle" title="Karıştır">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.6 9.2L5.4 4 4 5.4l5.2 5.2 1.4-1.4zM14.5 4l2 2L4 18.6 5.4 20 18 7.5l2 2V4h-5.5zm.3 9.4l-1.4 1.4 3.1 3.1L14.5 20H20v-5.5l-2 2-3.2-3.1z"/></svg>
       </button>
-      <button class="ctl" id="prev" title="Önceki">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6V5zm12 0v14l-9-7 9-7z"/></svg>
+      <button class="ctl dim" id="prev" title="Önceki">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
       </button>
       <button class="play-btn" id="playpause" title="Oynat">
         <svg id="pp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
       </button>
       <button class="ctl" id="next" title="Sonraki">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2V5zM6 5l9 7-9 7V5z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6z"/></svg>
       </button>
-      <button class="ctl toggle small" id="repeat" title="Tekrarla">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h9v2.5L20 6l-4-3.5V5H5v6h2V7zm10 10H8v-2.5L4 18l4 3.5V19h11v-6h-2v4z"/></svg>
+      <button class="ctl toggle small" id="timer" title="Uyku zamanlayıcı">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6" stroke-linecap="round"/><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
 
-    <!-- Alt bar -->
     <div class="bottom">
-      <button class="icon-btn" title="Cihazlar">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18v11H3V5zm2 2v7h14V7H5zM2 19h20v2H2v-2z"/></svg>
-      </button>
-      <button class="icon-btn" title="Paylaş">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
-      </button>
+      <div class="grp">
+        <button class="icon-btn" title="Cihaza bağlan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="14" height="11" rx="1.5"/><path d="M3 19h12" stroke-linecap="round"/><rect x="16" y="9" width="6" height="11" rx="1.5"/></svg>
+        </button>
+      </div>
+      <div class="grp">
+        <button class="icon-btn" title="Paylaş">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg>
+        </button>
+        <button class="icon-btn" title="Sıradakiler">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h12M4 12h12M4 17h8"/><path d="M18 12v7l4-3.5z" fill="currentColor" stroke="none"/></svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Sozler karti -->
-    <div class="lyrics-card" id="lyrics">
-      <div class="lh">Şarkı Sözleri</div>
-      <div class="ly"><span class="cur">Tuana ♡ Bulut için özel...</span></div>
+    <div class="lyrics-peek" id="peek">
+      <div class="lh">Şarkı sözleri önizlemesi</div>
+      <div class="lp" id="peek-line"></div>
     </div>
   </div>
 
   <audio id="audio" src="1.mp3" preload="metadata"></audio>
 
   <script>
+    const DEFAULT_LYRIC = "Tuana ♡ Bulut";  // song.lyric bos ise gosterilecek satir
     const songs = [
-      { title:"Herkesim",              artist:"Tuana ♡ Bulut", src:"1.mp3",  cover:"1.JPG" },
-      { title:"Cenneti Müjdeleyen",    artist:"Tuana ♡ Bulut", src:"2.mp3",  cover:"2.JPG" },
-      { title:"Lambalar Ve Kelebek",   artist:"Tuana ♡ Bulut", src:"3.mp3",  cover:"3.JPG" },
-      { title:"Aşk Yok Olmaktır",      artist:"Tuana ♡ Bulut", src:"4.mp3",  cover:"4.JPG" },
-      { title:"Yanarım Sevgime",       artist:"Tuana ♡ Bulut", src:"5.mp3",  cover:"5.JPG" },
-      { title:"Yarım Kalanlar",        artist:"Tuana ♡ Bulut", src:"6.mp3",  cover:"6.JPG" },
-      { title:"Aşk Bilir",             artist:"Tuana ♡ Bulut", src:"7.mp3",  cover:"7.JPG" },
-      { title:"Benimle Kayboldun",     artist:"Tuana ♡ Bulut", src:"8.mp3",  cover:"8.JPG", video:"8.MOV", thumb:"8.PNG" },
-      { title:"Nefret ve Aşk",         artist:"Tuana ♡ Bulut", src:"9.mp3",  cover:"9.JPG" },
-      { title:"Bir Sana",              artist:"Tuana ♡ Bulut", src:"10.mp3", cover:"10.JPG" },
-      { title:"Seni Düşündüm",         artist:"Tuana ♡ Bulut", src:"11.mp3", cover:"11.JPG" },
-      { title:"Geceyi Anlatmış",       artist:"Tuana ♡ Bulut", src:"12.mp3", cover:"12.JPG" }
+      { title:"Herkesim",              artist:"Tuana ♡ Bulut", src:"1.mp3",  cover:"1.JPG",  lyric:"" },
+      { title:"Cenneti Müjdeleyen",    artist:"Tuana ♡ Bulut", src:"2.mp3",  cover:"2.JPG",  lyric:"" },
+      { title:"Lambalar Ve Kelebek",   artist:"Tuana ♡ Bulut", src:"3.mp3",  cover:"3.JPG",  lyric:"" },
+      { title:"Aşk Yok Olmaktır",      artist:"Tuana ♡ Bulut", src:"4.mp3",  cover:"4.JPG",  lyric:"" },
+      { title:"Yanarım Sevgime",       artist:"Tuana ♡ Bulut", src:"5.mp3",  cover:"5.JPG",  lyric:"" },
+      { title:"Yarım Kalanlar",        artist:"Tuana ♡ Bulut", src:"6.mp3",  cover:"6.JPG",  lyric:"" },
+      { title:"Aşk Bilir",             artist:"Tuana ♡ Bulut", src:"7.mp3",  cover:"7.JPG",  lyric:"" },
+      { title:"Benimle Kayboldun",     artist:"Tuana ♡ Bulut", src:"8.mp3",  cover:"8.JPG", video:"8.MOV", thumb:"8.PNG", lyric:"" },
+      { title:"Nefret ve Aşk",         artist:"Tuana ♡ Bulut", src:"9.mp3",  cover:"9.JPG",  lyric:"" },
+      { title:"Bir Sana",              artist:"Tuana ♡ Bulut", src:"10.mp3", cover:"10.JPG", lyric:"" },
+      { title:"Seni Düşündüm",         artist:"Tuana ♡ Bulut", src:"11.mp3", cover:"11.JPG", lyric:"" },
+      { title:"Geceyi Anlatmış",       artist:"Tuana ♡ Bulut", src:"12.mp3", cover:"12.JPG", lyric:"" }
     ];
 
-    let idx = 0, shuffle = false, repeat = false;
+    let idx=0, shuffle=true, sleepStop=false;
 
-    const audio    = document.getElementById('audio');
-    const mainCover= document.getElementById('main-cover');
-    const mainVideo= document.getElementById('main-video');
-    const bgVideo  = document.getElementById('bg-video');
-    const bg       = document.getElementById('bg');
-    const titleEl  = document.getElementById('song-title');
-    const artistEl = document.getElementById('song-artist');
-    const ppIcon   = document.getElementById('pp-icon');
-    const fill     = document.getElementById('fill');
-    const knob     = document.getElementById('knob');
-    const curEl    = document.getElementById('cur');
-    const durEl    = document.getElementById('dur');
+    const $=id=>document.getElementById(id);
+    const audio=$('audio'), mainCover=$('main-cover'), thumbImg=$('thumb-img'),
+          bgVideo=$('bg-video'), titleEl=$('song-title'), artistEl=$('song-artist'),
+          teaser=$('lyric-teaser'), peekLine=$('peek-line'), ppIcon=$('pp-icon'),
+          fill=$('fill'), knob=$('knob'), curEl=$('cur'), remEl=$('rem');
 
-    const ICON_PLAY  = '<path d="M8 5v14l11-7L8 5z"/>';
-    const ICON_PAUSE = '<path d="M7 5h4v14H7V5zm6 0h4v14h-4V5z"/>';
+    const ICON_PLAY='<path d="M8 5v14l11-7L8 5z"/>';
+    const ICON_PAUSE='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
 
-    function fmt(s){ if(!isFinite(s)) return "0:00"; s=Math.floor(s); return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2); }
+    const fmt=s=>{ if(!isFinite(s)||s<0) s=0; s=Math.floor(s); return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2); };
+    const baseOf=n=>n.replace(/\.(jpe?g|png)$/i,'');
 
-    // Kapaktan baskin rengi hesapla -> arka plan gecisi
+    // Kapaktan Spotify tarzi baskin/canli renk cikar
     function applyCoverColor(url){
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => {
-        try{
-          const c = document.createElement('canvas'); c.width=c.height=24;
-          const ctx = c.getContext('2d'); ctx.drawImage(img,0,0,24,24);
-          const d = ctx.getImageData(0,0,24,24).data;
-          let r=0,g=0,b=0,n=0;
-          for(let i=0;i<d.length;i+=4){ r+=d[i]; g+=d[i+1]; b+=d[i+2]; n++; }
-          r=Math.round(r/n); g=Math.round(g/n); b=Math.round(b/n);
-          // canliligi artir, cok karanliksa hafif ac
-          const mx=Math.max(r,g,b);
-          if(mx<60){ r+=30; g+=30; b+=30; }
-          setGrad(`rgb(${r},${g},${b})`);
-        }catch(e){ setGrad('#535353'); }
-      };
-      img.onerror = () => setGrad('#535353');
-      img.src = url;
+      const img=new Image(); img.crossOrigin="anonymous";
+      img.onload=()=>{ try{
+        const N=32, c=document.createElement('canvas'); c.width=c.height=N;
+        const x=c.getContext('2d'); x.drawImage(img,0,0,N,N);
+        const d=x.getImageData(0,0,N,N).data, buckets={};
+        let ar=0,ag=0,ab=0,an=0;
+        for(let i=0;i<d.length;i+=4){
+          const r=d[i],g=d[i+1],b=d[i+2];
+          ar+=r;ag+=g;ab+=b;an++;
+          const mx=Math.max(r,g,b), mn=Math.min(r,g,b);
+          if(mx<24||mn>238||(mx-mn)<24) continue;            // cok koyu/acik/soluk atla
+          const key=(r>>4)+","+(g>>4)+","+(b>>4);
+          const bk=buckets[key]||(buckets[key]={n:0,r:0,g:0,b:0,s:0});
+          bk.n++; bk.r+=r; bk.g+=g; bk.b+=b; bk.s+=(mx-mn);
+        }
+        let best=null,score=-1;
+        for(const k in buckets){ const bk=buckets[k]; const sc=bk.n*(1+bk.s/bk.n/255); if(sc>score){score=sc;best=bk;} }
+        let r,g,b;
+        if(best){ r=Math.round(best.r/best.n); g=Math.round(best.g/best.n); b=Math.round(best.b/best.n); }
+        else { r=Math.round(ar/an); g=Math.round(ag/an); b=Math.round(ab/an); }
+        // cok koyuysa hafif ac
+        const lum=0.299*r+0.587*g+0.114*b;
+        if(lum<40){ const f=1.6; r=Math.min(255,r*f); g=Math.min(255,g*f); b=Math.min(255,b*f); }
+        setGrad(r,g,b);
+      }catch(e){ setGrad(122,31,34); } };
+      img.onerror=()=>setGrad(122,31,34);
+      img.src=url;
     }
-    function setGrad(color){
-      document.documentElement.style.setProperty('--grad', color);
+    function setGrad(r,g,b){
+      const rs=document.documentElement.style;
+      rs.setProperty('--grad',`rgb(${r|0},${g|0},${b|0})`);
+      rs.setProperty('--grad-dark',`rgb(${Math.round(r*0.34)},${Math.round(g*0.34)},${Math.round(b*0.34)})`);
     }
 
-    // .jpg / .JPG buyuk-kucuk harf toleransi
+    // .jpg / .JPG toleransli yukleme
     function loadImageAny(el, base, cb){
-      el.onerror = () => {
-        el.onerror = () => { el.onerror=null; cb && cb(false); };
-        el.src = base + '.jpg';
-      };
-      el.onload = () => cb && cb(true, el.src);
-      el.src = base + '.JPG';
+      el.onerror=()=>{ el.onerror=()=>{el.onerror=null;cb&&cb(false);}; el.src=base+'.jpg'; };
+      el.onload=()=>cb&&cb(true, el.currentSrc||el.src);
+      el.src=base+'.JPG';
     }
-
-    function baseOf(name){ return name.replace(/\.(jpe?g|png)$/i,''); }
 
     function load(){
-      const s = songs[idx];
-      titleEl.textContent  = s.title;
-      artistEl.textContent = s.artist;
+      const s=songs[idx];
+      titleEl.textContent=s.title;
+      artistEl.textContent=s.artist;
+      const line=s.lyric||DEFAULT_LYRIC;
+      teaser.textContent=line; peekLine.textContent=line;
+      const base=baseOf(s.cover);
 
       if(s.video){
-        mainCover.style.display='none';
-        mainVideo.style.display='block';
-        mainVideo.src=s.video; mainVideo.load(); mainVideo.play().catch(()=>{});
-        bgVideo.style.display='block'; bgVideo.src=s.video; bgVideo.load(); bgVideo.play().catch(()=>{});
-        if(s.thumb) applyCoverColor(s.thumb); else setGrad('#535353');
+        document.body.classList.add('video');
+        bgVideo.src=s.video; bgVideo.load(); bgVideo.play().catch(()=>{});
+        if(s.thumb){ thumbImg.src=s.thumb; applyCoverColor(s.thumb); }
+        else loadImageAny(thumbImg, base, (ok,u)=>{ if(ok) applyCoverColor(u); });
       } else {
-        mainVideo.pause(); mainVideo.removeAttribute('src'); mainVideo.style.display='none';
-        bgVideo.pause(); bgVideo.removeAttribute('src'); bgVideo.style.display='none';
-        mainCover.style.display='block';
-        const base = baseOf(s.cover);
-        loadImageAny(mainCover, base, (ok, url)=>{ if(ok) applyCoverColor(url); else setGrad('#535353'); });
+        document.body.classList.remove('video');
+        bgVideo.pause(); bgVideo.removeAttribute('src');
+        loadImageAny(mainCover, base, (ok,u)=>{ if(ok){ applyCoverColor(u); thumbImg.src=mainCover.src; } else setGrad(122,31,34); });
       }
 
-      audio.src = s.src; audio.load();
+      audio.src=s.src; audio.load();
       fill.style.width='0%'; knob.style.left='0%';
-      curEl.textContent='0:00'; durEl.textContent='0:00';
+      curEl.textContent='0:00'; remEl.textContent='-0:00';
     }
 
-    function play(){ audio.play(); }
-    function toggle(){ audio.paused ? audio.play() : audio.pause(); }
-    function next(auto){
-      if(shuffle){ let n=idx; if(songs.length>1){ while(n===idx){ n=Math.floor(Math.random()*songs.length);} } idx=n; }
+    const play=()=>audio.play();
+    const toggle=()=> audio.paused?audio.play():audio.pause();
+    function next(){
+      if(shuffle && songs.length>1){ let n=idx; while(n===idx) n=Math.floor(Math.random()*songs.length); idx=n; }
       else idx=(idx+1)%songs.length;
       load(); play();
     }
@@ -371,35 +328,31 @@
       idx=(idx-1+songs.length)%songs.length; load(); play();
     }
 
-    document.getElementById('playpause').onclick = toggle;
-    document.getElementById('next').onclick = ()=>next(false);
-    document.getElementById('prev').onclick = prev;
-    document.getElementById('shuffle').onclick = e=>{ shuffle=!shuffle; e.currentTarget.classList.toggle('on',shuffle); };
-    document.getElementById('repeat').onclick  = e=>{ repeat=!repeat; e.currentTarget.classList.toggle('on',repeat); };
-    document.getElementById('heart').onclick    = e=>{
-      const b=e.currentTarget, on=b.classList.toggle('active');
-      b.setAttribute('aria-pressed', on);
-      b.querySelector('svg').setAttribute('fill', on?'currentColor':'none');
-    };
+    $('playpause').onclick=toggle;
+    $('next').onclick=next;
+    $('prev').onclick=prev;
+    $('act-x').onclick=next;
+    $('shuffle').onclick=e=>{ shuffle=!shuffle; e.currentTarget.classList.toggle('on',shuffle); };
+    $('timer').onclick=e=>{ sleepStop=!sleepStop; e.currentTarget.classList.toggle('on',sleepStop); e.currentTarget.title=sleepStop?'Bu şarkının sonunda dur':'Uyku zamanlayıcı'; };
+    $('act-add').onclick=e=>{ const on=e.currentTarget.classList.toggle('on'); e.currentTarget.setAttribute('aria-pressed',on); };
 
-    audio.onplay  = ()=> ppIcon.innerHTML=ICON_PAUSE;
-    audio.onpause = ()=> ppIcon.innerHTML=ICON_PLAY;
-    audio.onended = ()=>{ if(repeat){ audio.currentTime=0; play(); } else next(true); };
-    audio.ontimeupdate = ()=>{
-      const p = audio.duration ? (audio.currentTime/audio.duration*100) : 0;
+    audio.onplay =()=>ppIcon.innerHTML=ICON_PAUSE;
+    audio.onpause=()=>ppIcon.innerHTML=ICON_PLAY;
+    audio.onended=()=>{ if(sleepStop){ sleepStop=false; $('timer').classList.remove('on'); return; } next(); };
+    audio.ontimeupdate=()=>{
+      const p=audio.duration?(audio.currentTime/audio.duration*100):0;
       fill.style.width=p+'%'; knob.style.left=p+'%';
       curEl.textContent=fmt(audio.currentTime);
-      durEl.textContent=fmt(audio.duration);
+      remEl.textContent='-'+fmt(audio.duration-audio.currentTime);
     };
-    audio.onloadedmetadata = ()=> durEl.textContent=fmt(audio.duration);
+    audio.onloadedmetadata=()=> remEl.textContent='-'+fmt(audio.duration);
 
-    const bar=document.getElementById('bar');
-    function seek(e){
+    const bar=$('bar');
+    bar.addEventListener('click',e=>{
       const r=bar.getBoundingClientRect();
       const x=((e.touches?e.touches[0].clientX:e.clientX)-r.left)/r.width;
       if(audio.duration) audio.currentTime=Math.min(1,Math.max(0,x))*audio.duration;
-    }
-    bar.addEventListener('click', seek);
+    });
 
     load();
   </script>
