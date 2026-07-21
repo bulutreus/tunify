@@ -130,8 +130,39 @@
       box-shadow:inset 0 0 0 100vh rgba(0,0,0,0.14);
       transition:background 0.6s ease;
     }
+    .lyrics-peek{ cursor:pointer; }
     .lyrics-peek .lh{ font-size:16px; font-weight:800; }
     .lyrics-peek .lp{ font-size:15px; font-weight:600; opacity:0.75; margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Tam ekran sozler gorunumu */
+    #lyrics-view{
+      position:fixed; inset:0; z-index:20; background:var(--grad);
+      display:flex; flex-direction:column; transform:translateY(100%);
+      transition:transform .34s cubic-bezier(.4,0,.2,1); visibility:hidden;
+    }
+    #lyrics-view.open{ transform:translateY(0); visibility:visible; }
+    #lyrics-view::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.34)); pointer-events:none; }
+    .lv-top{
+      position:relative; z-index:1; flex:0 0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:calc(10px + env(safe-area-inset-top)) 18px 6px;
+    }
+    .lv-title{ flex:1; text-align:center; font-size:14px; font-weight:800; padding:0 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .lv-title small{ display:block; font-weight:600; opacity:.75; font-size:12px; margin-top:1px; }
+    .lv-scroll{
+      position:relative; z-index:1; flex:1 1 auto; overflow-y:auto;
+      padding:14vh 26px 34vh; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .lv-scroll::-webkit-scrollbar{ display:none; }
+    .lv-line{
+      font-size:28px; font-weight:800; line-height:1.26; letter-spacing:-.4px;
+      color:rgba(255,255,255,.42); margin:0 0 24px; cursor:pointer;
+      transition:color .28s ease, opacity .28s ease;
+    }
+    .lv-line.active{ color:#fff; }
+    .lv-line.past{ color:rgba(255,255,255,.55); }
+    .lv-empty{ font-size:19px; font-weight:600; opacity:.85; line-height:1.5; }
   </style>
 </head>
 <body>
@@ -216,6 +247,19 @@
     </div>
   </div>
 
+  <div id="lyrics-view">
+    <div class="lv-top">
+      <button class="icon-btn" id="lv-close" title="Kapat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="lv-title" id="lv-title"></div>
+      <button class="icon-btn" title="Menü">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+      </button>
+    </div>
+    <div class="lv-scroll" id="lv-scroll"></div>
+  </div>
+
   <audio id="audio" src="1.mp3" preload="metadata"></audio>
 
   <script>
@@ -235,7 +279,28 @@
       { title:"Geceyi Anlatmış",       artist:"Tuana ♡ Bulut", src:"12.mp3", cover:"12.JPG", lyric:"" }
     ];
 
-    let idx=0, shuffle=true, sleepStop=false;
+    // === ŞARKI SÖZLERİ ===
+    // Her şarkıya src üzerinden eşlenir. İki biçim desteklenir:
+    //   1) Düz satırlar:   ["ilk mısra","ikinci mısra"]        -> süre boyunca otomatik eşit senkron
+    //   2) Zaman damgalı:  [{t:9,text:"ilk mısra"}, {t:14,text:"ikinci"}]   (t = saniye)
+    const LYRICS = {
+      "1.mp3":  [],
+      "2.mp3":  [],
+      "3.mp3":  [],
+      "4.mp3":  [],
+      "5.mp3":  [],
+      "6.mp3":  [],
+      "7.mp3":  [],
+      "8.mp3":  [],
+      "9.mp3":  [],
+      "10.mp3": [],
+      "11.mp3": [],
+      "12.mp3": []
+    };
+    const getLyrics = s => LYRICS[s.src] || [];
+    const lyText = l => (typeof l==='object' ? l.text : l);
+
+    let idx=0, shuffle=true, sleepStop=false, curLyrics=[], lyricsOpen=false;
 
     const $=id=>document.getElementById(id);
     const audio=$('audio'), mainCover=$('main-cover'), thumbImg=$('thumb-img'),
@@ -296,8 +361,10 @@
       const s=songs[idx];
       titleEl.textContent=s.title;
       artistEl.textContent=s.artist;
-      const line=s.lyric||DEFAULT_LYRIC;
-      teaser.textContent=line; peekLine.textContent=line;
+      curLyrics=getLyrics(s);
+      const firstLine = curLyrics.length ? lyText(curLyrics[0]) : (s.lyric||DEFAULT_LYRIC);
+      teaser.textContent=firstLine; peekLine.textContent=firstLine;
+      if(lyricsOpen) buildLyrics();
       const base=baseOf(s.cover);
 
       if(s.video){
@@ -344,7 +411,40 @@
       fill.style.width=p+'%'; knob.style.left=p+'%';
       curEl.textContent=fmt(audio.currentTime);
       remEl.textContent='-'+fmt(audio.duration-audio.currentTime);
+      updateLyric(audio.currentTime);
     };
+
+    // --- Sozler senkron ---
+    function lyTimes(){
+      const d=audio.duration||0;
+      return curLyrics.map((l,i)=> (typeof l==='object' && l.t!=null) ? l.t : (d ? d*i/curLyrics.length : 0));
+    }
+    function activeIdx(t){ const T=lyTimes(); let k=-1; for(let i=0;i<T.length;i++){ if(T[i]<=t+0.15) k=i; else break; } return k; }
+    function updateLyric(t){
+      if(!curLyrics.length) return;
+      const k=activeIdx(t);
+      teaser.textContent = lyText(curLyrics[k<0?0:k]);
+      if(lyricsOpen) highlight(k);
+    }
+    function buildLyrics(){
+      const box=$('lv-scroll'); box.innerHTML='';
+      $('lv-title').innerHTML = songs[idx].title + '<small>'+songs[idx].artist+'</small>';
+      if(!curLyrics.length){ box.innerHTML='<div class="lv-empty">Bu şarkı için sözler henüz eklenmedi.</div>'; return; }
+      curLyrics.forEach((l,i)=>{
+        const d=document.createElement('div'); d.className='lv-line'; d.textContent=lyText(l);
+        d.onclick=()=>{ const T=lyTimes(); audio.currentTime=T[i]||0; audio.play(); };
+        box.appendChild(d);
+      });
+    }
+    function highlight(k){
+      const box=$('lv-scroll'), lines=box.querySelectorAll('.lv-line');
+      lines.forEach((el,i)=>{ el.classList.toggle('active', i===k); el.classList.toggle('past', i<k); });
+      if(k>=0 && lines[k]) box.scrollTo({ top: lines[k].offsetTop - box.clientHeight*0.36, behavior:'smooth' });
+    }
+    function openLyrics(){ buildLyrics(); $('lyrics-view').classList.add('open'); lyricsOpen=true; highlight(activeIdx(audio.currentTime)); }
+    function closeLyrics(){ $('lyrics-view').classList.remove('open'); lyricsOpen=false; }
+    $('peek').onclick=openLyrics;
+    $('lv-close').onclick=closeLyrics;
     audio.onloadedmetadata=()=> remEl.textContent='-'+fmt(audio.duration);
 
     const bar=$('bar');
