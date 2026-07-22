@@ -3,3 +3,8 @@ tunifyy-hostinger.zip
 *.zip
 .DS_Store
 Thumbs.db
+
+# Söz transkripsiyonu (yardımcı araçlar, yayına gerek yok)
+*.py
+lyrics.json
+__pycache__/
