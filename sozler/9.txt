@@ -1,0 +1,27 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:16] Bu yüzden bazen buradan gitmek istiyorum defolu
+[0:20] Benim kalbim senden önce aratmazdı betonu
+[0:24] Ama olmayı başardın sen acı zahne de koru
+[0:26] İlk günler çok güzeldi ikimiz de mutluyduk
+[0:30] İki çifte kumruyduk sadece sen umrumdu
+[0:33] Başka bir kez böylesine yaşadığım bir duyguydu
+[0:36] Birbirimiz için yaratılmış yasına uygunduk
+[0:40] Ama sonra o saadetin yerini aldı kavgalar
+[0:43] Her gün bir bağırış çağırış her gün bir tantana
+[0:46] Bu nereye kadar sürer hep alttan al hep alttan al
+[0:49] İkisine en zor şey birbirimizi anlamak
+[0:52] Bu mücadeleyi verirken oluk oluk yuttuk
+[0:56] Bazen sana vurmamak için kendimi zor tuttum
+[0:59] Bazen en büyük düşmanım bazen en iyi dostumsun
+[1:02] Gerçekten istiyorsan beni öldür ve savunulsun
+[1:05] Senden nefret ediyorum inan bana
+[1:08] O kadar da kim gitmedi sana sahip olmak için
+[1:38] Koparttım cirleri bu boktan bir kabusta
+[1:42] Beni uyandır çimdikleyip
+[1:43] Baksın ben içimden ağlarım
+[1:46] İnan ki kalk geçen bıktım her anla
+[1:49] Maalesef bu ağlarım

@@ -47,7 +47,7 @@
     .screen{
       position:relative; z-index:1; max-width:460px; margin:0 auto;
       height:100vh; height:100dvh; display:flex; flex-direction:column;
-      padding:10px 22px calc(10px + env(safe-area-inset-bottom));
+      padding:clamp(6px,1.2vh,10px) clamp(16px,5vw,24px) calc(clamp(6px,1.2vh,10px) + env(safe-area-inset-bottom));
       overflow:hidden;
     }
 
@@ -67,9 +67,9 @@
     .icon-btn svg{ width:24px; height:24px; display:block; }
 
     /* Buyuk kapak */
-    .cover-wrap{ flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:14px 0; min-height:0; }
+    .cover-wrap{ flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:clamp(8px,1.6vh,14px) 0; min-height:0; }
     .cover-art{
-      width:min(90vw, 62vh, 420px); aspect-ratio:1/1;
+      width:min(84vw, 48vh, 400px); aspect-ratio:1/1;
       border-radius:8px; overflow:hidden; background:#222;
       box-shadow:0 16px 44px rgba(0,0,0,0.55);
     }
@@ -78,26 +78,26 @@
 
     /* Soz teaser (kapak ile baslik arasi kalin satir) */
     .lyric-teaser{
-      font-size:23px; font-weight:800; letter-spacing:-0.3px; line-height:1.2;
-      color:#fff; margin:6px 0 14px; flex:0 0 auto;
+      font-size:clamp(16px,4.8vw,23px); font-weight:800; letter-spacing:-0.3px; line-height:1.22;
+      color:#fff; margin:clamp(4px,1vh,6px) 0 clamp(8px,1.6vh,14px); flex:0 0 auto;
       display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
     }
     body.video .lyric-teaser{ margin-top:auto; }
 
     /* Baslik satiri + aksiyonlar */
     .meta{ display:flex; align-items:center; gap:12px; flex:0 0 auto; }
-    .meta .thumb{ width:48px; height:48px; border-radius:5px; overflow:hidden; background:#333; flex:0 0 auto; display:none; }
+    .meta .thumb{ width:clamp(42px,12vw,48px); height:clamp(42px,12vw,48px); border-radius:5px; overflow:hidden; background:#333; flex:0 0 auto; display:none; }
     .meta .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
     body.video .meta .thumb{ display:block; }
     .meta .txt{ flex:1; min-width:0; }
-    .meta .title{ font-size:23px; font-weight:800; letter-spacing:-0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .meta .artist{ font-size:15px; color:var(--muted); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .meta .title{ font-size:clamp(18px,5vw,23px); font-weight:800; letter-spacing:-0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .meta .artist{ font-size:clamp(13px,3.6vw,15px); color:var(--muted); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .act{ background:none; border:none; color:#fff; cursor:pointer; padding:4px; flex:0 0 auto; }
     .act svg{ width:26px; height:26px; display:block; }
     .act.add.on{ color:var(--accent); }
 
     /* Ilerleme */
-    .progress{ margin-top:18px; flex:0 0 auto; }
+    .progress{ margin-top:clamp(10px,2.2vh,18px); flex:0 0 auto; }
     .bar{ position:relative; height:4px; border-radius:2px; background:rgba(255,255,255,0.30); cursor:pointer; }
     .bar .fill{ position:absolute; left:0; top:0; bottom:0; width:0%; background:#fff; border-radius:2px; }
     .bar .knob{ position:absolute; top:50%; left:0%; width:12px; height:12px; background:#fff; border-radius:50%; transform:translate(-50%,-50%) scale(0); transition:transform .12s; }
@@ -105,34 +105,34 @@
     .times{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:7px; font-variant-numeric:tabular-nums; }
 
     /* Kontroller */
-    .controls{ display:flex; align-items:center; justify-content:space-between; margin-top:12px; flex:0 0 auto; }
+    .controls{ display:flex; align-items:center; justify-content:space-between; margin-top:clamp(6px,1.6vh,12px); flex:0 0 auto; }
     .ctl{ background:none; border:none; color:#fff; cursor:pointer; padding:6px; display:flex; align-items:center; justify-content:center; }
-    .ctl svg{ width:30px; height:30px; display:block; }
-    .ctl.small svg{ width:25px; height:25px; }
+    .ctl svg{ width:clamp(26px,8vw,30px); height:clamp(26px,8vw,30px); display:block; }
+    .ctl.small svg{ width:clamp(22px,6.6vw,25px); height:clamp(22px,6.6vw,25px); }
     .ctl.dim{ color:rgba(255,255,255,0.55); }
     .ctl.toggle{ color:#fff; position:relative; }
     .ctl.toggle.on{ color:var(--accent); }
     .ctl.toggle.on::after{ content:""; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:var(--accent); }
-    .play-btn{ background:#fff; border:none; cursor:pointer; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.4); transition:transform .08s; }
+    .play-btn{ background:#fff; border:none; cursor:pointer; width:clamp(54px,15vw,64px); height:clamp(54px,15vw,64px); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.4); transition:transform .08s; }
     .play-btn:active{ transform:scale(.94); }
-    .play-btn svg{ width:26px; height:26px; color:#000; display:block; }
+    .play-btn svg{ width:clamp(22px,6.5vw,26px); height:clamp(22px,6.5vw,26px); color:#000; display:block; }
 
     /* Alt bar */
-    .bottom{ display:flex; align-items:center; justify-content:space-between; margin-top:16px; flex:0 0 auto; }
+    .bottom{ display:flex; align-items:center; justify-content:space-between; margin-top:clamp(8px,1.8vh,16px); flex:0 0 auto; }
     .bottom .grp{ display:flex; align-items:center; gap:22px; }
     .bottom .icon-btn svg{ width:20px; height:20px; }
 
     /* Alt soz onizleme paneli */
     .lyrics-peek{
-      margin:14px -22px calc(-10px - env(safe-area-inset-bottom));
+      margin:clamp(8px,1.6vh,14px) calc(-1 * clamp(16px,5vw,24px)) calc(-1 * clamp(6px,1.2vh,10px) - env(safe-area-inset-bottom));
       background:var(--grad); border-radius:14px 14px 0 0;
-      padding:16px 22px 26px; flex:0 0 auto;
+      padding:clamp(11px,2vh,16px) clamp(16px,5vw,24px) clamp(16px,2.6vh,26px); flex:0 0 auto;
       box-shadow:inset 0 0 0 100vh rgba(0,0,0,0.14);
       transition:background 0.6s ease;
     }
     .lyrics-peek{ cursor:pointer; }
-    .lyrics-peek .lh{ font-size:16px; font-weight:800; }
-    .lyrics-peek .lp{ font-size:15px; font-weight:600; opacity:0.75; margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .lyrics-peek .lh{ font-size:clamp(14px,4vw,16px); font-weight:800; }
+    .lyrics-peek .lp{ font-size:clamp(13px,3.6vw,15px); font-weight:600; opacity:0.75; margin-top:clamp(3px,0.8vh,6px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     /* Tam ekran sozler gorunumu */
     #lyrics-view{
@@ -156,8 +156,8 @@
     }
     .lv-scroll::-webkit-scrollbar{ display:none; }
     .lv-line{
-      font-size:28px; font-weight:800; line-height:1.26; letter-spacing:-.4px;
-      color:rgba(255,255,255,.42); margin:0 0 24px; cursor:pointer;
+      font-size:clamp(21px,6.4vw,28px); font-weight:800; line-height:1.26; letter-spacing:-.4px;
+      color:rgba(255,255,255,.42); margin:0 0 clamp(16px,2.6vh,24px); cursor:pointer;
       transition:color .28s ease, opacity .28s ease;
     }
     .lv-line.active{ color:#fff; }
@@ -279,25 +279,29 @@
       { title:"Geceyi Anlatmış",       artist:"Tuana ♡ Bulut", src:"12.mp3", cover:"12.JPG", lyric:"" }
     ];
 
-    // === ŞARKI SÖZLERİ ===
-    // Her şarkıya src üzerinden eşlenir. İki biçim desteklenir:
-    //   1) Düz satırlar:   ["ilk mısra","ikinci mısra"]        -> süre boyunca otomatik eşit senkron
-    //   2) Zaman damgalı:  [{t:9,text:"ilk mısra"}, {t:14,text:"ikinci"}]   (t = saniye)
-    const LYRICS = {
-      "1.mp3": [{t:62.5,text:"Bir görünce kaçacaksın hep, sonunda kalacaksın hep tek"}, {t:67.2,text:"Belki gerekiyor destek, ne kadar istesen de gelmez"}, {t:70.4,text:"Gerse de artık bak çok geç, sana umudunu vermez"}, {t:73.6,text:"Umudu keseceksin hep tak"}, {t:75.2,text:"Bedenler bana güç, bedenler de ver cennet"}, {t:96.7,text:"Benim cennet, gözüm ahiretten"}],
-      "2.mp3": [],
-      "3.mp3": [{t:0.0,text:"Gün bugün itiraflarım olacak"}, {t:24.5,text:"Yaşarım her yolun başı sonu var"}, {t:27.6,text:"Bilirim nefesin beni boğacak"}, {t:30.4,text:"Tüm köşeleri kap"}, {t:31.9,text:"Sen o ışıltılı lambasın"}, {t:35.1,text:"Bende dönüp duran kelebek"}, {t:38.0,text:"Benim olmayacağını bilerek"}, {t:40.8,text:"Gelen şey denemek"}, {t:43.9,text:"Kanatlarım var"}, {t:46.2,text:"Ne uzun bir ömür"}, {t:47.6,text:"Dokunduğunda köz, yokluğunda kömür"}, {t:50.4,text:"Sen uzunca yaşa"}, {t:51.8,text:"Ben yaşarken ölü, nefessiz kalırım"}, {t:54.6,text:"Sen bir kez bana gül, rüzgarlarında yoruldum"}, {t:58.0,text:"Sanki oksijensin yokluğunda boğuldum"}, {t:70.5,text:"Tövbe, kaç tövbe"}, {t:74.0,text:"Çekince bir yudum, alınca bir duman"}, {t:77.2,text:"Benzidi sana bugün kaç gölge"}, {t:79.7,text:"Kazındı vücuduma kaç dövme"}, {t:82.4,text:"Tövbe, alınca biri sana bugün kaç gölge"}, {t:90.5,text:"Daldım hayalimin, alandım çaresizce eksenine"}, {t:95.2,text:"Duygu bir düşünce bekledim hep"}, {t:98.2,text:"Ne kader ne şans beni sevmedi pek"}, {t:101.7,text:"Ben akrep oldum sen de yelkova"}, {t:103.6,text:"Gümden geçtin öyle kaç kez"}, {t:106.6,text:"Dur bunca tozlu soluma"}, {t:109.3,text:"Ne de mesafe"}, {t:112.2,text:"Görün geçmişi bozulmuş o filmler gibi"}, {t:116.0,text:"Keşke söküp alsam içinden bizi"}, {t:118.9,text:"Ya geçmiş geçmemişse söyle"}, {t:122.0,text:"Bir an bile düşünmez misin?"}, {t:125.0,text:"Dövme kaç dövme"}, {t:128.4,text:"Edildi yeminlere kaç dövme"}, {t:131.3,text:"Çekince bir yudum alınca bir duman"}, {t:134.4,text:"Benzedi sana bugün kaç gölge"}, {t:136.8,text:"Kazındı vücuduma kaç dövme"}, {t:139.7,text:"Edildi yeminlere kaç tövbe"}, {t:142.6,text:"Çekince bir yudum, alınca bir duman"}, {t:145.8,text:"Benzedi sana bugün kaç gölge"}],
-      "4.mp3": [{t:30.0,text:"Çok kararlısın kalbimi çıra gibi yakmaya niye"}, {t:50.2,text:"Duvar çekiyorsam yanıyorum için için bitti işim"}, {t:57.1,text:"Saklar mı yüreğim"}, {t:60.1,text:"Yüreğimi içinin her yerinde eski kelimeler"}, {t:66.5,text:"Döndürüyor başımı sen söylediğinde korkular arzular"}, {t:73.8,text:"Nasıl başım dar bilsen şaşarsın yar her yeri"}, {t:78.5,text:"Kördüğüm dolaşıp ipin ucunu bul çözeyim"}, {t:87.1,text:"Her ayrıntım sayıklıyor, sükunetim deliliğinden"}, {t:93.1,text:"Aşk yok olmak diyor biri, yar ben yokum yoksa ben"}, {t:99.6,text:"Ay yaş ruhum sayıklıyor, her zerrem sende çarpıyor"}, {t:106.0,text:"Aşk yok olmakta şimdiden, yar ben yokum benden zaten"}, {t:144.1,text:"Bin çalıntı aşk tecrübesi bakıyor gözlerime ah"}, {t:149.6,text:"Soru soruyorsam tuzağına düşeceğim bana günah"}, {t:156.1,text:"Saklar mı yüreğim yüreğimi içinin her yerinde"}, {t:163.3,text:"Eski kelimeler döndürüyor başımı sen söylediğinde korkular arzular"}, {t:172.6,text:"Nasıl başım dar bilsen şaşarsın ya her yerim"}, {t:177.7,text:"Kördüğüm dolaşıp ipin ucunu bul çözeyim"}, {t:182.8,text:"Her ayrıntım sayıklıyor, sükunetim deliliğimden"}, {t:192.4,text:"Aşk yok olmak diyor biri, yar ben yokum yok zaten"}, {t:198.6,text:"Ruhum depremlere gebe, sükunetim deliliğimden"}, {t:205.2,text:"Aşk yok olmak diyor biri, yar ben yokum yoktan her"}, {t:211.6,text:"Her ayrıntıp sayıklıyor, sükunetim deliliğimden"}, {t:218.0,text:"Aşk yok olmak diyor biri, yar ben yokum yoktan her"}, {t:224.5,text:"Ay yaş ruhum sayıklıyor, her zerrem sende çarpıyor"}, {t:230.8,text:"Aşk yok olmaksa şimdiden, yar ben yokum bende zaten"}],
-      "5.mp3": [{t:0.9,text:"Hiç Gitmemiş Gibisin Kokun Hala Tenimde Sen Unutsan Da Beni Ah Gel O Yüreğim Seninle"}, {t:17.9,text:"Hiç Gitmemiş Gibisin Kokun Hala Tenimde Sen Unutsan Da Beni Yüreğim Seninle"}, {t:33.8,text:"Kor Ateşler İçinde Yanıyorum Yemin Olsun"}, {t:42.2,text:"Seni Benim Kadar Kimse Sevmeyecek Biliyorsun"}, {t:47.5,text:"Kor Ateşler İçinde Yanıyorum Yemin Olsun"}, {t:53.3,text:"Seni Benim Kadar Kimse Sevmeyecek Biliyorsun"}, {t:58.6,text:"Yanarım Yanarım Sevgimize Yanarım Yanarım İkimize Yanarım"}, {t:67.5,text:"Yanarım aldı bir abu gönlüm senden"}, {t:115.4,text:"Avutamadım ya"}, {t:116.8,text:"Senden sensiz avutamadım ya"}, {t:131.4,text:"Hor ateşler içinde yanıyorum yemin olsun"}, {t:138.6,text:"Onu benim kadar kimse sevmeyecek"}, {t:142.9,text:"Hor ateşler içinde benim kadar kimse sevmeyecek"}, {t:153.8,text:"Biliyorsun ya"}, {t:155.8,text:"Yanarım, yanarım sevgimize"}, {t:160.3,text:"Yanarım, yanarım ikimize"}, {t:163.0,text:"Yanarım, yanarım"}],
-      "6.mp3": [{t:14.3,text:"Beni bir yerde bir kadın bulmuş gibi"}, {t:16.4,text:"Tıkanan gönlüm görmüş dibi"}, {t:18.2,text:"Beni bir yerde bu kadın gömmüş gibi"}, {t:20.1,text:"Her doğru bedeni yanlış bilir"}, {t:22.0,text:"Sanki zaman durmuş gibi"}, {t:23.8,text:"Aşk yerine yüzüne konmuş kibir"}, {t:25.7,text:"Dilimde acı, içimde nefret düşün"}, {t:28.0,text:"Sevdiğin yanlış biri"}, {t:29.4,text:"Ve buna kanmış biri"}, {t:31.2,text:"Anlık evine dönmüş gibi"}, {t:33.0,text:"Suskun içine ağlar gibi"}, {t:34.8,text:"Yutkunamam bilen anlar beni"}, {t:36.7,text:"Anne sen gibi sevmez ki biri"}, {t:38.6,text:"Anlatamadığım masallar gibi"}, {t:40.4,text:"Yarım kalanlar kalıyor yerinde"}, {t:42.3,text:"Denize hasret bir mahkum gibi"}, {t:44.0,text:"Sensizlik güneşli bir havaya meydan okuyan bir sağanak gibi"}, {t:47.7,text:"Haksızca hayatı elinden alınan mahkuma üzülen cellat gibiyim"}, {t:51.6,text:"Asıl ayıp olan hayatı para sanıp bir kalbe biçilen fiyat değil mi?"}, {t:55.4,text:"Zorlama beni, aşk konu olunca yakarım bizi"}, {t:57.9,text:"Beni bilen bilir, diren canım"}, {t:59.7,text:"Diren ki umudum tohum atsın bana fidan gibi"}, {t:62.4,text:"Çünkü umudu yitiren bilir"}, {t:64.4,text:"Aynı güverte de güven gibi"}, {t:66.1,text:"Arkamdan dönen dümen gibi"}, {t:68.0,text:"En iyi parlamayı sönen bilir"}, {t:69.8,text:"Peki çakmak kimin?"}, {t:71.0,text:"29 oldum yaşıyorum hayatı çatlak gibi"}, {t:73.5,text:"Açılmayacak bir yanıyor dilim"}, {t:108.8,text:"Hala gözlerim ağrıyor manyak"}, {t:111.2,text:"Sarma, sarılırsan eğer geçecek gibi"}, {t:114.2,text:"Ne de olsa bitecek bir gün"}, {t:116.2,text:"Gözlerime toprak atacak biri"}, {t:117.9,text:"Beni bekliyor bu gece varım biri"}, {t:119.7,text:"Cebimde senelerin lınteri"}, {t:121.5,text:"İçerim düşerim kaldırma"}, {t:123.4,text:"Yeter ki basma aldırım gibi"}, {t:125.4,text:"Sanki bir deniz ve taşıyor gibiyim"}, {t:127.3,text:"Göremi yıllardır"}, {t:130.8,text:"Bütçesi nazı yok ve her şey boş"}, {t:141.2,text:"Yalan aslında uyanamadım da"}, {t:143.9,text:"Sırtıma yükleyip yaramaz sırlar"}, {t:145.8,text:"Gidemezsin balam aslında"}, {t:147.5,text:"Bu da yalan aslında"}, {t:149.4,text:"Yanar aslında"}, {t:151.2,text:"Ballara gizlenen hayat gibi mert"}, {t:153.2,text:"Beni bulamazsın da"}, {t:155.0,text:"Dik duruşmedim ana"}, {t:156.8,text:"Gözlerini aç ve zayıfım hala"}, {t:162.3,text:"Gözlerini aç"}],
-      "7.mp3": [{t:0.0,text:"Yapa yalnız doğdum yağmurlarda, al beni kanatlarının altına."}, {t:13.1,text:"Cennetten bir melek gibi düştüm ya dönme, içim erir, devamını aşk bilir."}, {t:24.6,text:"Yağmurlar yağsa üstüme, yıldızlar da bana senden bahsetse."}, {t:37.7,text:"Uluslar açılsa gönlüme, uçsam da meleklere bir ucuzla."}, {t:47.8,text:"Yeter ki korkma uçalım buralardan"}, {t:52.7,text:"Kanatlarına ya da sana bir dokunsan"}, {t:55.7,text:"Beni yorulur ki ruhum susmaz sana"}, {t:58.7,text:"Sarılsan da bile yanılsan yine de"}, {t:61.9,text:"Aşkımızı saklasan içinde"}, {t:64.5,text:"Haykırsan doğursan göklere"}, {t:67.6,text:"Bilirim şu yağmurlardan"}, {t:70.3,text:"Kaçamam, sakınamam istesem"}, {t:73.4,text:"Yağmurlar yağsa üstüme, yıldızlar da bana saygılar bahsettir."}, {t:83.5,text:"Bulutlar açılsa gönlüme, uçsumda meleklere bir dokunsa."}, {t:95.6,text:"Yağmurlar yağsa üstüme"}, {t:103.0,text:"Yıldızlar da bana senden bahsetse"}, {t:108.9,text:"Uluslar açılsa görme"}, {t:115.0,text:"Uçsam da meleklere bir ulusla"}, {t:120.4,text:"Yeter ki korkma uçalım buralardan"}, {t:124.7,text:"Kanatlarına ya da sana bir dokunsan"}, {t:127.7,text:"Biliyorum ki ruhum susmaz"}, {t:130.3,text:"Sana sarılsam da bile yanılsam yine de"}, {t:133.9,text:"Aşkımızı saklasam içimde"}, {t:136.6,text:"Haykırsam doğursam göklere"}, {t:139.6,text:"Biliyorum ki yağmurlardan"}, {t:142.3,text:"Kaçamam, sıkılamam istesem"}, {t:145.4,text:"Yağmurlar"}, {t:147.1,text:"Yağışlar üstüme"}, {t:150.8,text:"Yıldızlar da bana senler"}],
-      "8.mp3": [{t:2.0,text:"Hem gündüzüm, hem gecem, her saniyem, her bir hecem"}, {t:7.4,text:"Her cevabım sensin, hem de her bilmecem"}, {t:12.2,text:"Baktım göz ucuyla başka biri vardı yanımda"}, {t:18.4,text:"Sakin kalamazdım benim olacağını bilmesem"}, {t:22.9,text:"Zaten gerçeğim"}],
-      "9.mp3": [{t:16.2,text:"Bu yüzden bazen buradan gitmek istiyorum defolu"}, {t:20.2,text:"Benim kalbim senden önce aratmazdı betonu"}, {t:23.5,text:"Ama olmayı başardın sen acı zahne de koru"}, {t:26.5,text:"İlk günler çok güzeldi ikimiz de mutluyduk"}, {t:29.9,text:"İki çifte kumruyduk sadece sen umrumdu"}, {t:33.0,text:"Başka bir kez böylesine yaşadığım bir duyguydu"}, {t:36.2,text:"Birbirimiz için yaratılmış yasına uygunduk"}, {t:39.5,text:"Ama sonra o saadetin yerini aldı kavgalar"}, {t:42.6,text:"Her gün bir bağırış çağırış her gün bir tantana"}, {t:45.7,text:"Bu nereye kadar sürer hep alttan al hep alttan al"}, {t:49.0,text:"İkisine en zor şey birbirimizi anlamak"}, {t:52.3,text:"Bu mücadeleyi verirken oluk oluk yuttuk"}, {t:55.5,text:"Bazen sana vurmamak için kendimi zor tuttum"}, {t:58.6,text:"Bazen en büyük düşmanım bazen en iyi dostumsun"}, {t:61.9,text:"Gerçekten istiyorsan beni öldür ve savunulsun"}, {t:65.1,text:"Senden nefret ediyorum inan bana"}, {t:68.2,text:"O kadar da kim gitmedi sana sahip olmak için"}, {t:98.5,text:"Koparttım cirleri bu boktan bir kabusta"}, {t:101.6,text:"Beni uyandır çimdikleyip"}, {t:103.4,text:"Baksın ben içimden ağlarım"}, {t:105.7,text:"İnan ki kalk geçen bıktım her anla"}, {t:108.8,text:"Maalesef bu ağlarım"}],
-      "10.mp3": [{t:41.1,text:"Ama ben gerçeği usulca bilirim"}, {t:43.0,text:"Ölürse şeytanım ben siz"}, {t:44.9,text:"Uslanabilirim"}, {t:46.9,text:"İnanır mı meleklerim o gün ben hepimizi kurtarabilirim"}, {t:51.0,text:"Hiçbir kanat yokken bile bakışlarım yüzünden suslanabilirim"}, {t:55.0,text:"Nezaket sende kalsın ölmedikçe bunu yanlış anlayabilirim"}, {t:58.6,text:"Kardeşin bilmesin ama bir gece sokakta vurulabilirim"}, {t:62.7,text:"Üzülme gülüm güzel o günlere belki de geç kalabiliriz"}, {t:66.5,text:"Bu yolda acırken canımız birbirimize gülümseyebiliriz"}, {t:70.4,text:"Düşünce kalkarım kıpırdama sakın gözyaşımı yenebilirim"}, {t:74.2,text:"Belki de bu cehennemi birlikte evimize çevirebiliriz"}, {t:78.2,text:"Üzülme gülüm güzel o günlere belki de geç kalabiliriz"}, {t:82.1,text:"Bu yolda acırken canımız birbirimize gülümseyebiliriz"}, {t:86.0,text:"Düşünce kalkarım kıpırdama sakın gözyaşımı yenebilirim"}, {t:89.9,text:"Belki de bu cehennemi birlikte evimize çevirebiliriz"}, {t:93.8,text:"Bir sana bir tek bir sana bir tek bir sana bir tek bir sana"}, {t:97.5,text:"Yenildim bir tek bu yaşıma dek bir sana bir tek bir sana"}, {t:101.4,text:"Gezdim şehri caddelerini kudurmuş köpeklerle geceleri"}, {t:105.3,text:"Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana"}, {t:109.2,text:"Bir sana bir tek bir sana bir tek bir sana bir tek bir sana"}, {t:113.2,text:"Yenildim bir tek bu yaşıma dek bir sana bir tek bir sana"}, {t:117.1,text:"Gezdim şehri caddelerini kudurmuş köpeklerle geceleri"}, {t:120.9,text:"Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana"}, {t:124.8,text:"Bir sana bir tek, bir sana bir tek, bir sana bir tek"}, {t:128.4,text:"Vuruldum bir tek, bu yaşıma dek, bir sana bir tek"}, {t:132.2,text:"Bir sana bir tek, bir sana bir tek, bir sana bir tek, bir sana"}, {t:136.6,text:"Vuruldum bir tek, bu yaşıma dek, bir sana bir tek, bir sana"}, {t:140.4,text:"Gezdim şehrin çantelerini, kudurmuş köpeklerle geceleri"}, {t:144.3,text:"Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana"}, {t:148.2,text:"Bir sana bir tek, bir sana bir tek, bir sana bir tek, bir sana"}, {t:152.1,text:"Bir sana, bir tek, bir sana, bir tek, bir sana"}, {t:156.1,text:"Bir sana, bir tek, bir sana"}, {t:160.0,text:"Bir sana, bir tek, bir sana"}],
-      "11.mp3": [{t:0.0,text:"Yerde düşürdüm uykuların bulunmaz olduğu acıları arsız"}, {t:64.6,text:"Burk nefes alan bir cansız, burunmuş hep apansız"}, {t:68.6,text:"Bir yanı seni özlüyor, bir yanı kararsız"}, {t:71.2,text:"Tamam her şey çok güzel değil, sigaram kadar da tatsız"}, {t:74.8,text:"Susamışken gör"}, {t:76.4,text:"Kimde koptu çığlıklar öyle susunca"}, {t:147.0,text:"Defalarca kendimi bir yalanla sonra göreceğiz"}, {t:155.1,text:"Ayrı yerlerde güleceğiz"}, {t:158.0,text:"Ark sanırım dargın ölüceğiz"}, {t:160.4,text:"Susamışken gör"}],
-      "12.mp3": [{t:6.8,text:"Yıkılmadan, konuşmadan, geceyi anlatmış, geceyi anlatmış"}, {t:22.5,text:"Ses etmeden, böylece, geceyi anlatmış, geceyi anlatmış"}, {t:40.5,text:"En iyi son, ardına sol, yine bak, yıldızlara benziyor"}, {t:73.3,text:"O roman, yine bana yazdırıyor"}, {t:76.2,text:"Bak dolanıyor bu kafam ve alevini ağırlıyor"}, {t:80.7,text:"Ben içine bıçak gibi, dört gece bu uçak gibi"}, {t:88.2,text:"Kavuşacak gibi, ve yaşarsın yine ta kendisi"}, {t:97.5,text:"Tüm bunların son raddesi"}, {t:100.0,text:"O yanındayken, yaşarsın bak harbiden"}, {t:105.7,text:"Ayaklanma, umutlar gibi"}, {t:109.6,text:"O yanındayken, hissedersin ben harbiden"}, {t:115.0,text:"Vazgeçilmez bi' hayalet gibiyken"}, {t:121.6,text:"Yaşarsın bak harbiden"}, {t:124.4,text:"Ayaklanma, hissedersin ben harbiden"}, {t:133.3,text:"Vazgeçilmez bi' bitleri kaşıyanı bitiren o"}, {t:190.8,text:"Hep sen anlamın o"}, {t:202.6,text:"Bak harbiden"}, {t:207.9,text:"Ayaklanma, hissedersin ben harbiden"}]
-    };
-    const getLyrics = s => LYRICS[s.src] || [];
+    // === SARKI SOZLERI ===  (her sarki icin ayri dosya: sozler/1.txt, sozler/2.txt ...)
+    const lyricCache = {};
+    function parseLyrics(txt){
+      const out=[];
+      txt.split(/\r?\n/).forEach(raw=>{
+        let line=raw.trim();
+        if(!line || line[0]==='#') return;               // bos ve # yorum satirlari atlanir
+        let t=null;
+        const m=line.match(/^\[(\d{1,2}):(\d{1,2})(?:[.,]\d+)?\]\s*(.*)$/) || line.match(/^(\d{1,2}):(\d{2})\s+(.*)$/);
+        if(m){ t=(+m[1])*60+(+m[2]); line=m[3].trim(); }
+        if(line) out.push(t!=null ? {t,text:line} : line);
+      });
+      return out;
+    }
+    async function fetchLyrics(num){
+      if(lyricCache[num]) return lyricCache[num];
+      try{
+        const r=await fetch('sozler/'+num+'.txt',{cache:'no-cache'});
+        if(!r.ok) throw 0;
+        const arr=parseLyrics(await r.text());
+        lyricCache[num]=arr; return arr;
+      }catch(e){ lyricCache[num]=[]; return []; }
+    }
     const lyText = l => (typeof l==='object' ? l.text : l);
 
     let idx=0, shuffle=true, sleepStop=false, curLyrics=[], lyricsOpen=false;
@@ -361,10 +365,19 @@
       const s=songs[idx];
       titleEl.textContent=s.title;
       artistEl.textContent=s.artist;
-      curLyrics=getLyrics(s);
-      const firstLine = curLyrics.length ? lyText(curLyrics[0]) : (s.lyric||DEFAULT_LYRIC);
-      teaser.textContent=firstLine; peekLine.textContent=firstLine;
+      curLyrics=[];
+      const num = s.src.replace('.mp3','');
+      const fb = s.lyric||DEFAULT_LYRIC;
+      teaser.textContent=fb; peekLine.textContent=fb;
       if(lyricsOpen) buildLyrics();
+      fetchLyrics(num).then(arr=>{
+        if(songs[idx].src!==s.src) return;   // sarki degistiyse birak
+        curLyrics=arr;
+        const fl = arr.length ? lyText(arr[0]) : fb;
+        teaser.textContent=fl; peekLine.textContent=fl;
+        if(lyricsOpen) buildLyrics();
+        updateLyric(audio.currentTime);
+      });
       const base=baseOf(s.cover);
 
       if(s.video){

@@ -1,0 +1,38 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:41] Ama ben gerçeği usulca bilirim
+[0:43] Ölürse şeytanım ben siz
+[0:45] Uslanabilirim
+[0:47] İnanır mı meleklerim o gün ben hepimizi kurtarabilirim
+[0:51] Hiçbir kanat yokken bile bakışlarım yüzünden suslanabilirim
+[0:55] Nezaket sende kalsın ölmedikçe bunu yanlış anlayabilirim
+[0:59] Kardeşin bilmesin ama bir gece sokakta vurulabilirim
+[1:03] Üzülme gülüm güzel o günlere belki de geç kalabiliriz
+[1:06] Bu yolda acırken canımız birbirimize gülümseyebiliriz
+[1:10] Düşünce kalkarım kıpırdama sakın gözyaşımı yenebilirim
+[1:14] Belki de bu cehennemi birlikte evimize çevirebiliriz
+[1:18] Üzülme gülüm güzel o günlere belki de geç kalabiliriz
+[1:22] Bu yolda acırken canımız birbirimize gülümseyebiliriz
+[1:26] Düşünce kalkarım kıpırdama sakın gözyaşımı yenebilirim
+[1:30] Belki de bu cehennemi birlikte evimize çevirebiliriz
+[1:34] Bir sana bir tek bir sana bir tek bir sana bir tek bir sana
+[1:38] Yenildim bir tek bu yaşıma dek bir sana bir tek bir sana
+[1:41] Gezdim şehri caddelerini kudurmuş köpeklerle geceleri
+[1:45] Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana
+[1:49] Bir sana bir tek bir sana bir tek bir sana bir tek bir sana
+[1:53] Yenildim bir tek bu yaşıma dek bir sana bir tek bir sana
+[1:57] Gezdim şehri caddelerini kudurmuş köpeklerle geceleri
+[2:01] Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana
+[2:05] Bir sana bir tek, bir sana bir tek, bir sana bir tek
+[2:08] Vuruldum bir tek, bu yaşıma dek, bir sana bir tek
+[2:12] Bir sana bir tek, bir sana bir tek, bir sana bir tek, bir sana
+[2:17] Vuruldum bir tek, bu yaşıma dek, bir sana bir tek, bir sana
+[2:20] Gezdim şehrin çantelerini, kudurmuş köpeklerle geceleri
+[2:24] Ama bir gündüz vakti tek düşürdüm ve görünce vuruldum sana
+[2:28] Bir sana bir tek, bir sana bir tek, bir sana bir tek, bir sana
+[2:32] Bir sana, bir tek, bir sana, bir tek, bir sana
+[2:36] Bir sana, bir tek, bir sana
+[2:40] Bir sana, bir tek, bir sana

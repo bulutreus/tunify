@@ -1,0 +1,11 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[1:02] Bir görünce kaçacaksın hep, sonunda kalacaksın hep tek
+[1:07] Belki gerekiyor destek, ne kadar istesen de gelmez
+[1:10] Gerse de artık bak çok geç, sana umudunu vermez
+[1:14] Umudu keseceksin hep tak
+[1:15] Bedenler bana güç, bedenler de ver cennet
+[1:37] Benim cennet, gözüm ahiretten

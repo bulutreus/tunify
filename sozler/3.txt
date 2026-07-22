@@ -1,0 +1,44 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:00] Gün bugün itiraflarım olacak
+[0:24] Yaşarım her yolun başı sonu var
+[0:28] Bilirim nefesin beni boğacak
+[0:30] Tüm köşeleri kap
+[0:32] Sen o ışıltılı lambasın
+[0:35] Bende dönüp duran kelebek
+[0:38] Benim olmayacağını bilerek
+[0:41] Gelen şey denemek
+[0:44] Kanatlarım var
+[0:46] Ne uzun bir ömür
+[0:48] Dokunduğunda köz, yokluğunda kömür
+[0:50] Sen uzunca yaşa
+[0:52] Ben yaşarken ölü, nefessiz kalırım
+[0:55] Sen bir kez bana gül, rüzgarlarında yoruldum
+[0:58] Sanki oksijensin yokluğunda boğuldum
+[1:10] Tövbe, kaç tövbe
+[1:14] Çekince bir yudum, alınca bir duman
+[1:17] Benzidi sana bugün kaç gölge
+[1:20] Kazındı vücuduma kaç dövme
+[1:22] Tövbe, alınca biri sana bugün kaç gölge
+[1:30] Daldım hayalimin, alandım çaresizce eksenine
+[1:35] Duygu bir düşünce bekledim hep
+[1:38] Ne kader ne şans beni sevmedi pek
+[1:42] Ben akrep oldum sen de yelkova
+[1:44] Gümden geçtin öyle kaç kez
+[1:47] Dur bunca tozlu soluma
+[1:49] Ne de mesafe
+[1:52] Görün geçmişi bozulmuş o filmler gibi
+[1:56] Keşke söküp alsam içinden bizi
+[1:59] Ya geçmiş geçmemişse söyle
+[2:02] Bir an bile düşünmez misin?
+[2:05] Dövme kaç dövme
+[2:08] Edildi yeminlere kaç dövme
+[2:11] Çekince bir yudum alınca bir duman
+[2:14] Benzedi sana bugün kaç gölge
+[2:17] Kazındı vücuduma kaç dövme
+[2:20] Edildi yeminlere kaç tövbe
+[2:23] Çekince bir yudum, alınca bir duman
+[2:26] Benzedi sana bugün kaç gölge

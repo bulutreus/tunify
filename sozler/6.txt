@@ -1,0 +1,55 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:14] Beni bir yerde bir kadın bulmuş gibi
+[0:16] Tıkanan gönlüm görmüş dibi
+[0:18] Beni bir yerde bu kadın gömmüş gibi
+[0:20] Her doğru bedeni yanlış bilir
+[0:22] Sanki zaman durmuş gibi
+[0:24] Aşk yerine yüzüne konmuş kibir
+[0:26] Dilimde acı, içimde nefret düşün
+[0:28] Sevdiğin yanlış biri
+[0:29] Ve buna kanmış biri
+[0:31] Anlık evine dönmüş gibi
+[0:33] Suskun içine ağlar gibi
+[0:35] Yutkunamam bilen anlar beni
+[0:37] Anne sen gibi sevmez ki biri
+[0:39] Anlatamadığım masallar gibi
+[0:40] Yarım kalanlar kalıyor yerinde
+[0:42] Denize hasret bir mahkum gibi
+[0:44] Sensizlik güneşli bir havaya meydan okuyan bir sağanak gibi
+[0:48] Haksızca hayatı elinden alınan mahkuma üzülen cellat gibiyim
+[0:52] Asıl ayıp olan hayatı para sanıp bir kalbe biçilen fiyat değil mi?
+[0:55] Zorlama beni, aşk konu olunca yakarım bizi
+[0:58] Beni bilen bilir, diren canım
+[1:00] Diren ki umudum tohum atsın bana fidan gibi
+[1:02] Çünkü umudu yitiren bilir
+[1:04] Aynı güverte de güven gibi
+[1:06] Arkamdan dönen dümen gibi
+[1:08] En iyi parlamayı sönen bilir
+[1:10] Peki çakmak kimin?
+[1:11] 29 oldum yaşıyorum hayatı çatlak gibi
+[1:14] Açılmayacak bir yanıyor dilim
+[1:49] Hala gözlerim ağrıyor manyak
+[1:51] Sarma, sarılırsan eğer geçecek gibi
+[1:54] Ne de olsa bitecek bir gün
+[1:56] Gözlerime toprak atacak biri
+[1:58] Beni bekliyor bu gece varım biri
+[2:00] Cebimde senelerin lınteri
+[2:02] İçerim düşerim kaldırma
+[2:03] Yeter ki basma aldırım gibi
+[2:05] Sanki bir deniz ve taşıyor gibiyim
+[2:07] Göremi yıllardır
+[2:11] Bütçesi nazı yok ve her şey boş
+[2:21] Yalan aslında uyanamadım da
+[2:24] Sırtıma yükleyip yaramaz sırlar
+[2:26] Gidemezsin balam aslında
+[2:28] Bu da yalan aslında
+[2:29] Yanar aslında
+[2:31] Ballara gizlenen hayat gibi mert
+[2:33] Beni bulamazsın da
+[2:35] Dik duruşmedim ana
+[2:37] Gözlerini aç ve zayıfım hala
+[2:42] Gözlerini aç

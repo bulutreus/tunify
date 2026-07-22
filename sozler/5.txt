@@ -1,0 +1,22 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:01] Hiç Gitmemiş Gibisin Kokun Hala Tenimde Sen Unutsan Da Beni Ah Gel O Yüreğim Seninle
+[0:18] Hiç Gitmemiş Gibisin Kokun Hala Tenimde Sen Unutsan Da Beni Yüreğim Seninle
+[0:34] Kor Ateşler İçinde Yanıyorum Yemin Olsun
+[0:42] Seni Benim Kadar Kimse Sevmeyecek Biliyorsun
+[0:48] Kor Ateşler İçinde Yanıyorum Yemin Olsun
+[0:53] Seni Benim Kadar Kimse Sevmeyecek Biliyorsun
+[0:59] Yanarım Yanarım Sevgimize Yanarım Yanarım İkimize Yanarım
+[1:08] Yanarım aldı bir abu gönlüm senden
+[1:55] Avutamadım ya
+[1:57] Senden sensiz avutamadım ya
+[2:11] Hor ateşler içinde yanıyorum yemin olsun
+[2:19] Onu benim kadar kimse sevmeyecek
+[2:23] Hor ateşler içinde benim kadar kimse sevmeyecek
+[2:34] Biliyorsun ya
+[2:36] Yanarım, yanarım sevgimize
+[2:40] Yanarım, yanarım ikimize
+[2:43] Yanarım, yanarım

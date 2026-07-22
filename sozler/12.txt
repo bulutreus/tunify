@@ -1,0 +1,23 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:07] Yıkılmadan, konuşmadan, geceyi anlatmış, geceyi anlatmış
+[0:22] Ses etmeden, böylece, geceyi anlatmış, geceyi anlatmış
+[0:40] En iyi son, ardına sol, yine bak, yıldızlara benziyor
+[1:13] O roman, yine bana yazdırıyor
+[1:16] Bak dolanıyor bu kafam ve alevini ağırlıyor
+[1:21] Ben içine bıçak gibi, dört gece bu uçak gibi
+[1:28] Kavuşacak gibi, ve yaşarsın yine ta kendisi
+[1:38] Tüm bunların son raddesi
+[1:40] O yanındayken, yaşarsın bak harbiden
+[1:46] Ayaklanma, umutlar gibi
+[1:50] O yanındayken, hissedersin ben harbiden
+[1:55] Vazgeçilmez bi' hayalet gibiyken
+[2:02] Yaşarsın bak harbiden
+[2:04] Ayaklanma, hissedersin ben harbiden
+[2:13] Vazgeçilmez bi' bitleri kaşıyanı bitiren o
+[3:11] Hep sen anlamın o
+[3:23] Bak harbiden
+[3:28] Ayaklanma, hissedersin ben harbiden

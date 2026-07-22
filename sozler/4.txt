@@ -1,0 +1,30 @@
+# Bu sarkinin sozleri. Her satir bir misra.
+# Basina [dakika:saniye] yazarsan o an vurgulanir (senkron). Orn: [1:23] Merhaba
+# Zaman yazmazsan satirlar sarki boyunca esit dagitilir.
+# '#' ile baslayan satirlar yok sayilir. Istedigin gibi duzenle.
+
+[0:30] Çok kararlısın kalbimi çıra gibi yakmaya niye
+[0:50] Duvar çekiyorsam yanıyorum için için bitti işim
+[0:57] Saklar mı yüreğim
+[1:00] Yüreğimi içinin her yerinde eski kelimeler
+[1:06] Döndürüyor başımı sen söylediğinde korkular arzular
+[1:14] Nasıl başım dar bilsen şaşarsın yar her yeri
+[1:18] Kördüğüm dolaşıp ipin ucunu bul çözeyim
+[1:27] Her ayrıntım sayıklıyor, sükunetim deliliğinden
+[1:33] Aşk yok olmak diyor biri, yar ben yokum yoksa ben
+[1:40] Ay yaş ruhum sayıklıyor, her zerrem sende çarpıyor
+[1:46] Aşk yok olmakta şimdiden, yar ben yokum benden zaten
+[2:24] Bin çalıntı aşk tecrübesi bakıyor gözlerime ah
+[2:30] Soru soruyorsam tuzağına düşeceğim bana günah
+[2:36] Saklar mı yüreğim yüreğimi içinin her yerinde
+[2:43] Eski kelimeler döndürüyor başımı sen söylediğinde korkular arzular
+[2:53] Nasıl başım dar bilsen şaşarsın ya her yerim
+[2:58] Kördüğüm dolaşıp ipin ucunu bul çözeyim
+[3:03] Her ayrıntım sayıklıyor, sükunetim deliliğimden
+[3:12] Aşk yok olmak diyor biri, yar ben yokum yok zaten
+[3:19] Ruhum depremlere gebe, sükunetim deliliğimden
+[3:25] Aşk yok olmak diyor biri, yar ben yokum yoktan her
+[3:32] Her ayrıntıp sayıklıyor, sükunetim deliliğimden
+[3:38] Aşk yok olmak diyor biri, yar ben yokum yoktan her
+[3:44] Ay yaş ruhum sayıklıyor, her zerrem sende çarpıyor
+[3:51] Aşk yok olmaksa şimdiden, yar ben yokum bende zaten
